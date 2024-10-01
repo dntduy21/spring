@@ -8,12 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "district")
-public class DistrictEntity {
+@Table(name = "renttype")
+public class RentTypeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -24,8 +26,17 @@ public class DistrictEntity {
 	@Column(name = "name")
 	private String name;
 
-	@OneToMany(mappedBy = "districtEntity")
+	@ManyToMany
+	@JoinTable(name = "buildingrenttype", joinColumns = @JoinColumn(name = "renttypeid"), inverseJoinColumns = @JoinColumn(name = "buildingid"))
 	private List<BuildingEntity> buildingEntities = new ArrayList<>();
+
+	public List<BuildingEntity> getBuildingEntities() {
+		return buildingEntities;
+	}
+
+	public void setBuildingEntities(List<BuildingEntity> buildingEntities) {
+		this.buildingEntities = buildingEntities;
+	}
 
 	public Long getId() {
 		return id;
@@ -41,14 +52,6 @@ public class DistrictEntity {
 
 	public void setCode(String code) {
 		this.code = code;
-	}
-
-	public List<BuildingEntity> getBuildingEntities() {
-		return buildingEntities;
-	}
-
-	public void setBuildingEntities(List<BuildingEntity> buildingEntities) {
-		this.buildingEntities = buildingEntities;
 	}
 
 	public String getName() {

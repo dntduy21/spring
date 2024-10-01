@@ -1,6 +1,8 @@
 package com.tduy.repository.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,18 +10,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "rentarea")
-public class RentAreaEntity {
+@Table(name = "role")
+public class RoleEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "value")
-	private String value;
+	@Column(name = "name")
+	private String name;
+
+	@Column(name = "code")
+	private String code;
 
 	@Column(name = "createddate")
 	private Date createddate;
@@ -33,9 +39,9 @@ public class RentAreaEntity {
 	@Column(name = "modifiedby")
 	private String modifiedby;
 
-	@ManyToOne
-	@JoinColumn(name = "buildingid")
-	private BuildingEntity buildingEntity;
+	@ManyToMany
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "roleid"), inverseJoinColumns = @JoinColumn(name = "userid"))
+	private List<UserEntity> userEntities = new ArrayList<>();
 
 	public Date getCreateddate() {
 		return createddate;
@@ -69,6 +75,14 @@ public class RentAreaEntity {
 		this.modifiedby = modifiedby;
 	}
 
+	public List<UserEntity> getUserEntities() {
+		return userEntities;
+	}
+
+	public void setUserEntities(List<UserEntity> userEntities) {
+		this.userEntities = userEntities;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -77,20 +91,20 @@ public class RentAreaEntity {
 		this.id = id;
 	}
 
-	public BuildingEntity getBuildingEntity() {
-		return buildingEntity;
+	public String getName() {
+		return name;
 	}
 
-	public void setBuildingEntity(BuildingEntity buildingEntity) {
-		this.buildingEntity = buildingEntity;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getValue() {
-		return value;
+	public String getCode() {
+		return code;
 	}
 
-	public void setValue(String value) {
-		this.value = value;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 }
