@@ -4,207 +4,182 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BuildingSearchBuilder {
-	private String name;
-	private String street;
-	private String ward;
-	private Integer districtid;
-	private Integer numberofbasement;
-	private Integer floorarea;
-	private String level;
-	private Integer rentpricefrom;
-	private Integer rentpriceto;
-	private Integer rentareafrom;
-	private Integer rentareato;
-	private Long brokeragefee;
-	private String managername;
-	private String managerphonenumber;
-	private Long staffid;
-	private List<String> typeCode = new ArrayList();
+    private String name;
+    private Long floorArea;
+    private String ward;
+    private String street;
+    private Long districtId;
+    private Integer numberOfBasement;
+    private List<String> code = new ArrayList<>();
+    private String managerName;
+    private String managerPhoneNumber;
+    private Long rentPriceFrom;
+    private Long rentPriceTo;
+    private Long areaFrom;
+    private Long areaTo;
+    private Long staffId;
 
-	public BuildingSearchBuilder(Builder builder) {
-		this.name = builder.name;
-		this.street = builder.street;
-		this.districtid = builder.districtid;
-		this.numberofbasement = builder.numberofbasement;
-		this.floorarea = builder.floorarea;
-		this.level = builder.level;
-		this.rentpricefrom = builder.rentpricefrom;
-		this.rentpriceto = builder.rentpriceto;
-		this.rentareafrom = builder.rentareafrom;
-		this.rentareato = builder.rentareato;
-		this.brokeragefee = builder.brokeragefee;
-		this.managername = builder.managername;
-		this.managerphonenumber = builder.managerphonenumber;
-		this.staffid = builder.staffid;
-		this.typeCode = builder.typeCode;
-		this.ward = builder.ward;
-	}
+    private BuildingSearchBuilder(Builder builder) {
+        this.name = builder.name;
+        this.floorArea = builder.floorArea;
+        this.ward = builder.ward;
+        this.street = builder.street;
+        this.districtId = builder.districtId;
+        this.numberOfBasement = builder.numberOfBasement;
+        this.code = builder.code;
+        this.managerName = builder.managerName;
+        this.managerPhoneNumber = builder.managerPhoneNumber;
+        this.rentPriceFrom = builder.rentPriceFrom;
+        this.rentPriceTo = builder.rentPriceTo;
+        this.areaFrom = builder.areaFrom;
+        this.areaTo = builder.areaTo;
+        this.staffId = builder.staffId;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getStreet() {
-		return street;
-	}
+    public Long getFloorArea() {
+        return floorArea;
+    }
 
-	public String getWard() {
-		return ward;
-	}
+    public String getWard() {
+        return ward;
+    }
 
-	public Integer getDistrictid() {
-		return districtid;
-	}
+    public String getStreet() {
+        return street;
+    }
 
-	public Integer getNumberofbasement() {
-		return numberofbasement;
-	}
+    public Long getDistrictId() {
+        return districtId;
+    }
 
-	public Integer getFloorarea() {
-		return floorarea;
-	}
+    public Integer getNumberOfBasement() {
+        return numberOfBasement;
+    }
 
-	public String getLevel() {
-		return level;
-	}
+    public List<String> getCode() {
+        return code;
+    }
 
-	public Integer getRentpricefrom() {
-		return rentpricefrom;
-	}
+    public String getManagerName() {
+        return managerName;
+    }
 
-	public Integer getRentpriceto() {
-		return rentpriceto;
-	}
+    public String getManagerPhoneNumber() {
+        return managerPhoneNumber;
+    }
 
-	public Integer getRentareafrom() {
-		return rentareafrom;
-	}
+    public Long getRentPriceFrom() {
+        return rentPriceFrom;
+    }
 
-	public Integer getRentareato() {
-		return rentareato;
-	}
+    public Long getRentPriceTo() {
+        return rentPriceTo;
+    }
 
-	public Long getBrokeragefee() {
-		return brokeragefee;
-	}
+    public Long getAreaFrom() {
+        return areaFrom;
+    }
 
-	public String getManagername() {
-		return managername;
-	}
+    public Long getAreaTo() {
+        return areaTo;
+    }
 
-	public String getManagerphonenumber() {
-		return managerphonenumber;
-	}
+    public Long getStaffId() {
+        return staffId;
+    }
 
-	public Long getStaffid() {
-		return staffid;
-	}
+    public static class Builder {
+        private String name;
+        private Long floorArea;
+        private String ward;
+        private String street;
+        private Long districtId;
+        private Integer numberOfBasement;
+        private List<String> code = new ArrayList<>();
+        private String managerName;
+        private String managerPhoneNumber;
+        private Long rentPriceFrom;
+        private Long rentPriceTo;
+        private Long areaFrom;
+        private Long areaTo;
+        private Long staffId;
 
-	public List<String> getTypeCode() {
-		return typeCode;
-	}
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
 
-	public static class Builder {
-		private String name;
-		private String street;
-		private String ward;
-		private Integer districtid;
-		private Integer numberofbasement;
-		private Integer floorarea;
-		private String level;
-		private Integer rentpricefrom;
-		private Integer rentpriceto;
-		private Integer rentareafrom;
-		private Integer rentareato;
-		private Long brokeragefee;
-		private String managername;
-		private String managerphonenumber;
-		private Long staffid;
-		private List<String> typeCode = new ArrayList();
+        public Builder setFloorArea(Long floorArea) {
+            this.floorArea = floorArea;
+            return this;
+        }
 
-		public Builder setName(String name) {
-			this.name = name;
-			return this;
-		}
+        public Builder setWard(String ward) {
+            this.ward = ward;
+            return this;
+        }
 
-		public Builder setStreet(String street) {
-			this.street = street;
-			return this;
-		}
+        public Builder setStreet(String street) {
+            this.street = street;
+            return this;
+        }
 
-		public Builder setWard(String ward) {
-			this.ward = ward;
-			return this;
-		}
+        public Builder setDistrictId(Long districtId) {
+            this.districtId = districtId;
+            return this;
+        }
 
-		public Builder setDistrictid(Integer districtid) {
-			this.districtid = districtid;
-			return this;
-		}
+        public Builder setNumberOfBasement(Integer numberOfBasement) {
+            this.numberOfBasement = numberOfBasement;
+            return this;
+        }
 
-		public Builder setNumberofbasement(Integer numberofbasement) {
-			this.numberofbasement = numberofbasement;
-			return this;
-		}
+        public Builder setCode(List<String> code) {
+            this.code = code;
+            return this;
+        }
 
-		public Builder setFloorarea(Integer floorarea) {
-			this.floorarea = floorarea;
-			return this;
-		}
+        public Builder setManagerName(String managerName) {
+            this.managerName = managerName;
+            return this;
+        }
 
-		public Builder setLevel(String level) {
-			this.level = level;
-			return this;
-		}
+        public Builder setManagerPhoneNumber(String managerPhoneNumber) {
+            this.managerPhoneNumber = managerPhoneNumber;
+            return this;
+        }
 
-		public Builder setRentpricefrom(Integer rentpricefrom) {
-			this.rentpricefrom = rentpricefrom;
-			return this;
-		}
+        public Builder setRentPriceFrom(Long rentPriceFrom) {
+            this.rentPriceFrom = rentPriceFrom;
+            return this;
+        }
 
-		public Builder setRentpriceto(Integer rentpriceto) {
-			this.rentpriceto = rentpriceto;
-			return this;
-		}
+        public Builder setRentPriceTo(Long rentPriceTo) {
+            this.rentPriceTo = rentPriceTo;
+            return this;
+        }
 
-		public Builder setRentareafrom(Integer rentareafrom) {
-			this.rentareafrom = rentareafrom;
-			return this;
-		}
+        public Builder setAreaFrom(Long areaFrom) {
+            this.areaFrom = areaFrom;
+            return this;
+        }
 
-		public Builder setRentareato(Integer rentareato) {
-			this.rentareato = rentareato;
-			return this;
-		}
+        public Builder setAreaTo(Long areaTo) {
+            this.areaTo = areaTo;
+            return this;
+        }
 
-		public Builder setBrokeragefee(Long brokeragefee) {
-			this.brokeragefee = brokeragefee;
-			return this;
-		}
+        public Builder setStaffId(Long staffId) {
+            this.staffId = staffId;
+            return this;
+        }
 
-		public Builder setManagername(String managername) {
-			this.managername = managername;
-			return this;
-		}
-
-		public Builder setManagerphonenumber(String managerphonenumber) {
-			this.managerphonenumber = managerphonenumber;
-			return this;
-		}
-
-		public Builder setStaffid(Long staffid) {
-			this.staffid = staffid;
-			return this;
-		}
-
-		public Builder setTypeCode(List<String> typeCode) {
-			this.typeCode = typeCode;
-			return this;
-		}
-
-		public BuildingSearchBuilder build() {
-			return new BuildingSearchBuilder(this);
-		}
-
-	}
+        public BuildingSearchBuilder build() {
+            return new BuildingSearchBuilder(this);
+        }
+    }
 }

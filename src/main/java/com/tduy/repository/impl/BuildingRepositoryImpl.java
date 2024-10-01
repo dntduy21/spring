@@ -21,11 +21,11 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 	private EntityManager entityManager;
 
 	public static void joinTable(BuildingSearchBuilder buildingSearchBuilder, StringBuilder sql) {
-		Long staffId = buildingSearchBuilder.getStaffid();
+		Long staffId = buildingSearchBuilder.getStaffId();
 		if (staffId != null) {
 			sql.append(" INNER JOIN assignmentbuilding ON b.id = assignmentbuilding.buildingid ");
 		}
-		List<String> code = buildingSearchBuilder.getTypeCode();
+		List<String> code = buildingSearchBuilder.getCode();
 		if (code != null || code.size() != 0) {
 			sql.append(" INNER JOIN buildingrenttype ON b.id = buildingrenttype.buildingid ");
 			sql.append(" INNER JOIN renttype ON renttype.id = buildingrenttype.renttypeid ");
@@ -57,12 +57,12 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 	}
 
 	public static void querySpecial(BuildingSearchBuilder buildingSearchBuilder, StringBuilder where) {
-		Long staffId = buildingSearchBuilder.getStaffid();
+		Long staffId = buildingSearchBuilder.getStaffId();
 		if (staffId != null) {
 			where.append(" AND assignmentbuilding.staffid = " + staffId);
 		}
-		Integer rentAreaTo = buildingSearchBuilder.getRentareato();
-		Integer rentAreaFrom = buildingSearchBuilder.getRentareafrom();
+		Long rentAreaTo = buildingSearchBuilder.getRentPriceTo();
+		Long rentAreaFrom = buildingSearchBuilder.getRentPriceFrom();
 		if (rentAreaTo != null || rentAreaFrom != null) {
 			where.append(" AND EXISTS (SELECT * FROM rentarea r WHERE b.id = r.buildingid");
 			if (rentAreaFrom != null) {
@@ -75,8 +75,8 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 
 		}
 
-		Integer rentPriceTo = buildingSearchBuilder.getRentpriceto();
-		Integer rentPriceFrom = buildingSearchBuilder.getRentpricefrom();
+		Long rentPriceTo = buildingSearchBuilder.getRentPriceTo();
+		Long rentPriceFrom = buildingSearchBuilder.getRentPriceFrom();
 		if (rentPriceFrom != null || rentPriceTo != null) {
 			if (rentPriceFrom != null) {
 				where.append(" AND b.rentprice >= " + rentPriceFrom);
@@ -86,7 +86,7 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 			}
 
 		}
-		List<String> code = buildingSearchBuilder.getTypeCode();
+		List<String> code = buildingSearchBuilder.getCode();
 		if (code != null && code.size() != 0) {
 			where.append(" AND (");
 			String sql = code.stream().map(it -> "renttype.code LIKE '%" + it + "%'")
